@@ -74,7 +74,7 @@ Condition::Condition(Mutex &_M) throw(CondException) {
 #endif //HAVE_LIBPTHREAD
 }
 
-Condition::~Condition() throw(CondException) {
+Condition::~Condition() {
 #if defined(HAVE_LIBPTHREAD)
   int rv;
 

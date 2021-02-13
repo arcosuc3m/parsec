@@ -83,7 +83,7 @@ class Mutex: public LockType {
 
   public:
     Mutex() throw(MutexException);
-    ~Mutex() throw(MutexException);
+    ~Mutex();
 
     //Enter a critical region
     void Lock() throw(MutexException);

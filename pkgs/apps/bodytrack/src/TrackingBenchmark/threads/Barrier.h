@@ -61,7 +61,7 @@ class BarrierUnknownException: public BarrierException {
 class Barrier {
   public:
     Barrier(int) throw(BarrierException);
-    ~Barrier() throw(BarrierException);
+    ~Barrier();
 
     //Wait at a barrier, will return true for exactly one thread, false for all other threads
     bool Wait() throw(BarrierException);

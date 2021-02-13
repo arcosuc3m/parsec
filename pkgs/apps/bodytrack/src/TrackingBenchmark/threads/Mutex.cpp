@@ -60,7 +60,7 @@ Mutex::Mutex() throw(MutexException) {
 #endif //HAVE_LIBPTHREAD
 }
 
-Mutex::~Mutex() throw(MutexException) {
+Mutex::~Mutex() {
 #if defined(HAVE_LIBPTHREAD)
   int rv;
 

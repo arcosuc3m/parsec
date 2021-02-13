@@ -63,7 +63,7 @@ class CondUnknownException: public CondException {
 class Condition {
   public:
     Condition(Mutex &) throw(CondException);
-    ~Condition() throw(CondException);
+    ~Condition();
 
     //Wake up exactly one thread, return number of threads currently waiting (before wakeup)
     //If no more threads are waiting, the notification is lost

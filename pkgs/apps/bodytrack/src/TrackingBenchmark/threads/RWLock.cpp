@@ -52,7 +52,7 @@ RWLock::RWLock() throw(RWLockException) {
 
 }
 
-RWLock::~RWLock() throw(RWLockException) {
+RWLock::~RWLock() {
   int rv;
 
   rv = pthread_rwlock_destroy(&l);

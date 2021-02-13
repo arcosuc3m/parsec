@@ -67,7 +67,7 @@ class RWLockUnknownException: public RWLockException {
 class RWLock: public RWLockType {
   public:
     RWLock() throw(RWLockException);
-    ~RWLock() throw(RWLockException);
+    ~RWLock();
 
     //Enter a critical region for reading
     void ReadLock() throw(RWLockException);
