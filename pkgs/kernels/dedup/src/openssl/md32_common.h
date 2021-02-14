@@ -383,7 +383,9 @@ int HASH_FINAL (unsigned char *md, HASH_CTX *c)
 	}
 
 #ifndef MD32_REG_T
+#ifndef __clang__
 #define MD32_REG_T long
+#else
 /*
  * This comment was originaly written for MD5, which is why it
  * discusses A-D. But it basically applies to all 32-bit digests,
@@ -405,4 +407,10 @@ int HASH_FINAL (unsigned char *md, HASH_CTX *c)
  * generates better code.
  *				<appro@fy.chalmers.se>
  */
+#define MD32_REG_T int
+/*
+ * Clang does not accept long. So we use int.
+ *                              <jdgarcia@inf.uc3m.es>
+ */
+#endif
 #endif
