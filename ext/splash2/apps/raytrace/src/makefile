@@ -2,7 +2,7 @@ TARGET = raytrace
 
 OBJS = bbox.o cr.o env.o fbuf.o geo.o huprn.o husetup.o hutv.o isect.o \
 	main.o matrix.o memory.o poly.o raystack.o shade.o sph.o trace.o \
-	tri.o workpool.o
+	tri.o workpool.o rt.o
 LDFLAGS = -lpthread -lm
 MACROS = ../../../null_macros/c.m4.null.pthread
 CFLAGS =  -O2 -w 
@@ -67,4 +67,4 @@ sph.c:	sph.C rt.h
 trace.c: trace.C rt.h
 tri.c:	tri.C rt.h
 workpool.c: workpool.C rt.h
-
+rt.c:	rt.C rt.h
