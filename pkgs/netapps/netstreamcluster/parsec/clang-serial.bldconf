@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source ${PARSECDIR}/pkgs/netapps/netstreamcluster/parsec/clang.bldconf
+
+# Override build environment
+build_env="version=serial"
+
