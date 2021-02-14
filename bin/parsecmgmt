@@ -244,7 +244,7 @@ function parsec_init {
       eval pkg=$(${BASENAME} $file)
       pkg=${pkg%\.pkgconf}
 
-      # Add prefex ('parsec' or 'splash2')to the pkg 
+      # Add prefex ('parsec')to the pkg 
       pkg=${pkg/\./_}
 
       eval  pkglist=\"\$alias_${newalias}\"
@@ -260,7 +260,7 @@ function parsec_init {
 # Arguments: all arguments given to the script (i.e. "$@")
 function process_args {
   # Default configuration to use
-  default_pkgs="parsec splash2 splash2x"
+  default_pkgs="parsec"
   default_build="gcc"
   default_rundir="${PARSECDIR}"
   default_inputsize="test"
@@ -344,25 +344,7 @@ Examples (2) [NEW: Network Benchmarks]:
         $me -a run -p netdedup -i simlarge -n 4 -m server
         $me -a run -p netdedup -i simlarge -m client
     - Do a full cleanup for network benchmarks:
-        $me -a fullclean -p netapps
-
-
-Examples (3) [NEW: SPLASH-2 Suite and SPLASH-2x Suite]:
-    - Check the status of SPLASH-2 suite and SPLASH-2x suite:
-        $me -a status -p splash2
-        $me -a status -p splash2x
-    - Build benchmark 'raytrace' from SPLASH-2x suite other than PARSEC:
-        $me -a build -p splash2x.raytrace
-        $me -a build -p raytrace   ## defaultly from PARSEC (for comparison)
-    - Build benchmark 'fft' from SPLASH-2 suite with 'gcc-serial' build configuration:
-        $me -a build -c gcc-serial -p splash2.fft
-    - Build all benchmarks from SPLASH-2 suite and SPLASH-2x suite:
-        $me -a build -p splash2
-        $me -a build -p splash2x
-    - Run benchmark 'fft' from SPLASH-2x w/ input 'simsmall' and 4 threads:
-        $me -a run -p splash2x.fft -i simsmall -n 4
-    - Do a full cleanup for SPLASH-2 suite
-        $me -a fullclean -p splash2"
+        $me -a fullclean -p netapps"
 
   # Define valid actions
   valid_actions="build run clean uninstall fullclean fulluninstall status info"
@@ -527,7 +509,7 @@ Examples (3) [NEW: SPLASH-2 Suite and SPLASH-2x Suite]:
             is_valid=""
             # Is it a recognized alias?
             tmparg=""
-            tmparg=${arg/\./_} #arg could be "splash2" or "splash2.fmm"
+            tmparg=${arg/\./_} 
             if [ ${tmparg} == ${arg} ]; then
                 eval tmparg="\"\${alias_${arg}}\""
                 if [ ! -z "${tmparg}" ]; then
@@ -664,7 +646,7 @@ Examples (3) [NEW: SPLASH-2 Suite and SPLASH-2x Suite]:
     # Is it a recognized alias?
     for arg in ${default_pkgs} ; do
             tmparg=""
-            tmparg=${arg/\./_} #arg could be "splash2" or "splash2.fmm"
+            tmparg=${arg/\./_} 
             if [ ${tmparg} == ${arg} ]; then
                 eval tmparg="\"\${alias_${arg}}\""
                 if [ -z "${tmparg}" ]; then
@@ -734,7 +716,6 @@ Examples (3) [NEW: SPLASH-2 Suite and SPLASH-2x Suite]:
   # there are three kinds of token in $pkgs:
   #    1) parsec_pthread, parsec_opemmp, etc. alias, remove "parsec_" and just expand them
   #    2) parsec_streamcluster etc. not alias but parsec workloads, just add them
-  #    3) splash2_raytrace, splash2_xxx. not alias but splash2 workloads, just add them
   expanded_aliases=""
   for token in ${pkgs}; do
     # Is it a recognized alias?
@@ -1093,20 +1074,6 @@ function run_benchmark {
       eval benchdir="pkgs"
   else
       eval benchdir="ext/${bench}"
-  fi
-
-  # splash2 does not support multiple inputs 
-  if [ ${bench} == "splash2" ]; then
-      inputsize="test"
-      echo "${oprefix} NOTE: SPLASH-2 only supports \"test\" input sets." | ${TEE} ${log}
-      echo "${oprefix}       Please use SPLASH-2x for multiple input sets." | ${TEE} ${log}
-  fi
-
-  # splash2 does not support multiple inputs 
-  if [ ${bench} == "splash2" ]; then
-      inputsize="test"
-      echo "${oprefix} NOTE: SPLASH-2 only supports \"test\" input sets." | ${TEE} ${log}
-      echo "${oprefix}       Please use SPLASH-2x for multiple input sets." | ${TEE} ${log}
   fi
 
   local platform
