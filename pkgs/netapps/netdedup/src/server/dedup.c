@@ -6,6 +6,7 @@
 #include "dedupdef.h"
 #include "encoder.h"
 #include "decoder.h"
+#include "hashtable.h"
 #include "config.h"
 #include "queue.h"
 
@@ -23,7 +24,7 @@
 
 
 config_t * conf;
-
+struct hashtable *cache;
 
 
 /*--------------------------------------------------------------------------*/
