@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# clang-openmp.bldconf - file containing global information necessary to build
+#                      PARSEC with clang and openmp
+#
+# Copyright (C) 2021 Universidad Carlos III de Madrid
+# Written by J. Daniel Garcia
+#
+# based on previous work by
+#
+# Copyright (C) 2008 Princeton University
+# Written by Christian Bienia
+
+source ${PARSECDIR}/config/clang.bldconf
+
+# Enable OpenMP
+CFLAGS="${CFLAGS} -fopenmp"
+CXXFLAGS="${CXXFLAGS} -fopenmp"
+
