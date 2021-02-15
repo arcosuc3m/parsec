@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# clang-tbb.bldconf - configuration file for PARSEC
-
-source ${PARSECDIR}/pkgs/libs/glib/parsec/clang.bldconf
-
