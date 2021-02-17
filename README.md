@@ -19,3 +19,7 @@ If you want to use them followi the following steps:
  1. Copy the contents in your PARSEC source tree.
 
 Note that the .gitignore file of this repo already ignores all files named `input_native.tar`.
+
+## Compatibility issues
+
+We have extended compiler support for recent versions of gcc and for the clang compiler. See limitation [here](current-status.md).
